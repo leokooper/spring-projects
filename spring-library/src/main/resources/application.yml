@@ -1,0 +1,32 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: 12345678
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  datasource:
+    default-catalog: spring-library
+    jndi-name: jdbc/SpringLibrary
+  jpa:
+    database-platform: MySQL8Dialect
+    properties:
+      hibernate:
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format-sql: true
+    show-sql: true
+
+logging:
+  file:
+    name: library.log
+  pattern:
+    file: "d{HH:mm:ss} %-5p [%c] - %m%n"
+  level:
+    ROOT: error
+    org.springframework: warn
+    javax.faces: warn
+    org.omnifaces: warn
+    org.springframework.security: warn
+    org.hibernate: warn
+    org.hibernate.type.descriptor.sql: warn
