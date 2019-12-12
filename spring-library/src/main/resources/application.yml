@@ -13,13 +13,13 @@ spring:
     properties:
       hibernate:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.MySQLInnoDBDialect
         format-sql: true
     show-sql: true
 
 logging:
   file:
-    name: library.log
+    name: /Users/leokooper/git/spring-projects/spring-library/src/main/resources/library.log
   pattern:
     file: "d{HH:mm:ss} %-5p [%c] - %m%n"
   level:
