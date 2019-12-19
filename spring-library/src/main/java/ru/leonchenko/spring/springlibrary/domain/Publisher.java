@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,29 +16,25 @@ import java.util.List;
  * @version 1.0
  */
 
+
 @Entity
 @Table(catalog = "sping-library")
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
-@DynamicUpdate
 @DynamicInsert
+@DynamicUpdate
 @SelectBeforeUpdate
-public class Author {
-
+public class Publisher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    private String fio;
-
-    private Date birthday;
+    private String name;
 
     @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "publisher")
     private List<Book> books;
 
     @Override
-    public String toString() {
-        return fio;
-    }
+    public String toString() {return name;}
 }

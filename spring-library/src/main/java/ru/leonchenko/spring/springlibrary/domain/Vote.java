@@ -8,8 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author Igor Leonchenko
@@ -17,28 +15,23 @@ import java.util.List;
  */
 
 @Entity
-@Table(catalog = "sping-library")
+@Table(name = "sping-library")
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
 @DynamicUpdate
 @DynamicInsert
 @SelectBeforeUpdate
-public class Author {
+public class Vote {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
-    private String fio;
+    private Integer value;
 
-    private Date birthday;
+    @Column(name = "book_id")
+    private Long bookId;
 
-    @Basic(fetch = FetchType.LAZY)
-    @OneToMany(mappedBy = "author")
-    private List<Book> books;
+    private String username;
 
-    @Override
-    public String toString() {
-        return fio;
-    }
 }
