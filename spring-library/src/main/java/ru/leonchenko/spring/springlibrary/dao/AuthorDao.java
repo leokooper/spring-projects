@@ -10,13 +10,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface AuthorDao {
+public interface AuthorDao extends SuperDao<Author>{
 
-    List<Author> getAll();
-    Author get (long id);
-    Author save (Author obj);
-    void delete (Author obj);
-
-    List<Author> search(String... searchString);
 
 }

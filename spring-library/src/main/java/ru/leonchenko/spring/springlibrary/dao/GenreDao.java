@@ -10,12 +10,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface GenreDao {
-    List<Genre> getAll();
-    Genre get (long id);
-    Genre save (Genre obj);
-    void delete (Genre obj);
+public interface GenreDao extends SuperDao<Genre>{
 
-    List<Genre> search(String... searchString);
 
 }

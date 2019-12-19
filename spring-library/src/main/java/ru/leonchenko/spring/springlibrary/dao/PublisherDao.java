@@ -11,11 +11,6 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface PublisherDao {
-    List<Publisher> getAll();
-    Publisher get (long id);
-    Publisher save (Genre obj);
-    void delete (Publisher obj);
+public interface PublisherDao extends SuperDao<Publisher>{
 
-    List<Publisher> search(String... searchString);
 }

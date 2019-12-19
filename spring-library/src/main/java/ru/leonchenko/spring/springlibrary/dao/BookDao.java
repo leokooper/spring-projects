@@ -9,13 +9,7 @@ import java.util.List;
  * @version 1.0
  */
 
-public interface BookDao {
-    List<Book> getAll();
-    Book get (long id);
-    Book save (Book obj);
-    void delete (Book obj);
-
-    List<Book> search(String... searchString);
+public interface BookDao extends SuperDao<Book>{
 
     List<Book> findTopBooks(int Limits);
 }

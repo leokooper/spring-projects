@@ -35,7 +35,7 @@ public class Book {
         this.isbn = isbn;
         this.genre = genre;
         this.author = author;
-        this.publisherYear = publisherYear;
+        this.publishYear = publishYear;
         this.publisher = publisher;
         this.image = image;
         this.avgRating = avgRating;
@@ -73,8 +73,8 @@ public class Book {
     @JoinColumn
     private Author author;
 
-    @Column(name = "publisher_year")
-    private Integer publisherYear;
+    @Column(name = "publish_year")
+    private Integer publishYear;
 
     @ManyToOne
     @JoinColumn
