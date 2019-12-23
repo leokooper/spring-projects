@@ -23,7 +23,10 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // если имя метода получается слишком длинным - можно использовать @Query с HQL
     List<Book> findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(String name, String fio);
 
-    @Query("select new ru.leonchenko.spring.springlibrary.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publishYear, b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b")
+//    @Query("select new ru.leonchenko.spring.springlibrary.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publishYear,  b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b")
+//    Page<Book> findAllWithoutContent(Pageable pageable); // возвращает список книг (с постраничностью)
+
+    @Query("select new ru.leonchenko.spring.springlibrary.domain.Book(b.id, b.name) from Book b")
     Page<Book> findAllWithoutContent(Pageable pageable); // возвращает список книг (с постраничностью)
 
     // если запрос изменяет данные - нужен @Modifying

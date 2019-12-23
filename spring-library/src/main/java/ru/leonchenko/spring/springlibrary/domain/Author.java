@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Entity
-@Table(catalog = "sping-library")
+@Table(catalog = "spring_library")
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
 @DynamicUpdate

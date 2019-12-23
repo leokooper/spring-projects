@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ru.leonchenko.spring.springlibrary.domain.Author;
 import ru.leonchenko.spring.springlibrary.domain.Book;
 import ru.leonchenko.spring.springlibrary.spring.repository.AuthorRepository;
 import ru.leonchenko.spring.springlibrary.spring.repository.BookRepository;
@@ -30,7 +31,7 @@ public class RedirectController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String baseUrlRedirect(HttpServletRequest request, HttpServletResponse httpServletResponse) {
 
-        Page<Book> bookList = bookRepository.findAllWithoutContent(new PageRequest(0, 10, new Sort(Sort.Direction.ASC, "name")));
+        Page<Book> bookList = bookRepository.findAllWithoutContent(PageRequest.of(0, 10, Sort.by("name").ascending()));
 
         return "ok";
     }

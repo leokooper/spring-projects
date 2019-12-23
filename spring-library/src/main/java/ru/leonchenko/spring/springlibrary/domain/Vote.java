@@ -15,7 +15,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "sping-library")
+@Table(name = "spring_library")
 @EqualsAndHashCode(of = "id")
 @Getter @Setter
 @DynamicUpdate

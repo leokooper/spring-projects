@@ -1,19 +1,20 @@
 spring:
-  security:
-    user:
-      name: admin
-      password: 12345678
-  autoconfigure:
-    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+#  security:
+#    user:
+#      name: admin
+#      password: 12345678
+#  autoconfigure:
+#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   datasource:
-    default-catalog: spring-library
+    default-catalog: spring_library
     jndi-name: jdbc/SpringLibrary
+    url: jdbc:mysql://localhost:3306/spring_library
   jpa:
-    database-platform: MySQL8Dialect
+    database-platform: org.hibernate.dialect.MySQLInnoDBDialect
     properties:
       hibernate:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
-        dialect: org.hibernate.dialect.MySQLInnoDBDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
         format-sql: true
     show-sql: true
 
