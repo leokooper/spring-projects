@@ -45,9 +45,9 @@ public class Book {
         this.avgRating = avgRating;
     }
 
-    public Book(Long id, String name) {
-        this.id = id;
-        this.name = name;
+//    public Book(Long id, String name) {
+//        this.id = id;
+//        this.name = name;
 //        this.pageCount = pageCount;
 //        this.isbn = isbn;
 //        this.genre = genre;
@@ -60,7 +60,7 @@ public class Book {
 //        this.totalRating = totalRating;
 //        this.totalVoteCount = totalVoteCount;
 //        this.avgRating = avgRating;
-    }
+//    }
 
     public Book(Long id, byte[] image) {
         this.id = id;

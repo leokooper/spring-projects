@@ -1,5 +1,7 @@
 package ru.leonchenko.spring.springlibrary.dao;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import ru.leonchenko.spring.springlibrary.domain.Book;
 
 import java.util.List;
@@ -11,5 +13,12 @@ import java.util.List;
 
 public interface BookDao extends SuperDao<Book>{
 
-    List<Book> findTopBooks(int Limits);
+    // поиск наиболее популярных книг
+    List<Book> findTopBooks(int limit);
+
+    // получение контента по id
+    byte[] getContetnt(int id);
+
+    //постраничный вывод книг определенного жанра
+    Page<Book> findByGenre(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long genreId);
 }
