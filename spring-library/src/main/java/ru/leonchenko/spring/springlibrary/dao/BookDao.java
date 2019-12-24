@@ -17,7 +17,7 @@ public interface BookDao extends SuperDao<Book>{
     List<Book> findTopBooks(int limit);
 
     // получение контента по id
-    byte[] getContetnt(int id);
+    byte[] getContetnt(long id);
 
     //постраничный вывод книг определенного жанра
     Page<Book> findByGenre(int pageNumber, int pageSize, String sortField, Sort.Direction sortDirection, long genreId);

@@ -23,6 +23,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // если имя метода получается слишком длинным - можно использовать @Query с HQL
     List<Book> findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(String name, String fio);
 
+    Page<Book> findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(String name, String fio, Pageable pageable);
+
     @Query("select new ru.leonchenko.spring.springlibrary.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publishYear,  b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b")
     Page<Book> findAllWithoutContent(Pageable pageable); // возвращает список книг (с постраничностью)
 
@@ -38,5 +40,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     // В классе Book должен быть соответствующий конструктор
     @Query("select new ru.leonchenko.spring.springlibrary.domain.Book(b.id, b.image) from Book b")
     List<Book> findTopBooks(Pageable pageable);
+
+    // поиск книг по жанру
+    @Query("select new ru.javabegin.training.library.domain.Book(b.id, b.name, b.pageCount, b.isbn, b.genre, b.author, b.publisher, b.publishYear, b.image, b.descr, b.viewCount, b.totalRating, b.totalVoteCount, b.avgRating) from Book b where b.genre.id=:genreId")
+    Page<Book> findByGenre(@Param("genreId") long genreId, Pageable pageable);
+
+    // получение контента по id книги
+    @Query("select b.content FROM Book b where b.id = :id")
+    byte[] getContent(@Param("id") long id);
 
 }

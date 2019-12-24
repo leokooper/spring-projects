@@ -47,6 +47,8 @@ configurations {
 }
 
 dependencies {
+
+    //backend
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.2.2.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.2.2.RELEASE'
@@ -59,6 +61,14 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
     providedCompile group: 'javax', name: 'javaee-api', version: '8.0.1'
 
+    //frontend
+    compile group: 'org.primefaces', name: 'primefaces', version: '6.0'
+    compile group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+    compile group: 'org.omnifaces', name: 'omnifaces', version: '2.5.1'
+    compile group: 'net.bootsfaces', name: 'bootsfaces', version: '1.0.0'
+    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.primefaces.themes', name: 'bootstrap', version: '1.0.10'
 
 //    implementation 'org.springframework.boot:spring-boot-starter-web'
 //    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
