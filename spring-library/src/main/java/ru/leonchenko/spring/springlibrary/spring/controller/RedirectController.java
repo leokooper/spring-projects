@@ -17,24 +17,17 @@ import ru.leonchenko.spring.springlibrary.spring.repository.BookRepository;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 @Controller
 @Log
 public class RedirectController {
-
-    @Autowired
-    private AuthorRepository authorRepository;
-
-    @Autowired
-    private BookRepository bookRepository;
-
     // при запуске проекта - первый запрос попадает сюда
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String baseUrlRedirect(HttpServletRequest request, HttpServletResponse httpServletResponse) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String baseUrlRedirect(HttpServletRequest request) {
 
-        Page<Book> bookList = bookRepository.findAllWithoutContent(PageRequest.of(0, 10, Sort.by("name").ascending()));
+        // перенаправление на страницу индекс
+        return "redirect:" + request.getRequestURL().append("/index.xhtml").toString();
 
-        return "ok";
     }
-
-
 }
