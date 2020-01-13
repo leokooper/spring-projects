@@ -1,10 +1,10 @@
 spring:
-#  security:
-#    user:
-#      name: admin
-#      password: 12345678
-#  autoconfigure:
-#    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  #  security:
+  #    user:
+  #      name: admin
+  #      password: 12345678
+  #  autoconfigure:
+  #    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   autoconfigure:
     exclude: - org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
 

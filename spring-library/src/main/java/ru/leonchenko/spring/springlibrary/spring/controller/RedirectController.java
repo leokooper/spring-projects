@@ -27,7 +27,7 @@ public class RedirectController {
     public String baseUrlRedirect(HttpServletRequest request) {
 
         // перенаправление на страницу индекс
-        return "redirect:" + request.getRequestURL().append("/index.xhtml").toString();
+        return "redirect:" + request.getRequestURL().append("index.xhtml").toString();
 
     }
 }
