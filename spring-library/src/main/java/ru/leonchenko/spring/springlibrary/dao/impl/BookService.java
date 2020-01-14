@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.leonchenko.spring.springlibrary.dao.BookDao;
 import ru.leonchenko.spring.springlibrary.domain.Book;
 import ru.leonchenko.spring.springlibrary.spring.repository.BookRepository;
@@ -17,6 +19,8 @@ import java.util.Optional;
  * @version 1.0
  */
 
+@Service
+@Transactional
 public class BookService implements BookDao {
 
     @Autowired
@@ -95,7 +99,17 @@ public class BookService implements BookDao {
         return bookRepository.findByGenre(genreId, PageRequest.of(pageNumber, pageSize, Sort.by(sortDirection, sortField)));
     }
 
-//    @Override
+    @Override
+    public void updateViewCount(long viewCount, long id) {
+        bookRepository.updateViewCount(viewCount, id);
+    }
+
+    @Override
+    public void updateRating(long totalRating, long totalVoteCount, int avgRating, long id) {
+        bookRepository.updateRating(totalRating, totalVoteCount, avgRating, id);
+    }
+
+    //    @Override
 //    public List<Book> findTopBooks(int limit) {
 //        return null;
 //    }
