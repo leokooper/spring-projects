@@ -44,8 +44,8 @@ public class BookService implements BookDao {
 
     @Override
     public List<Book> search(String... searchString) {
-//        return bookRepository.findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(searchString[0],searchString[0]);
-        return null;
+        return bookRepository.findByNameContainingIgnoreCaseOrAuthorFioContainingIgnoreCaseOrderByName(searchString[0],searchString[0]);
+//        return null;
     }
 
     @Override
