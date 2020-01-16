@@ -7,24 +7,21 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
 
-    <b:row>
-
         <div class="genres">
 
             <!--ссылка на поиск всех жанров-->
-            <p:commandLink styleClass="list-group-item all-genres" >
+            <p:commandLink styleClass="list-group-item all-genres" actionListener="#{bookController.showAll()}"
+            update="@([id$=booksList])">
                 <p:outputLabel value="#{msg.all_genres}" styleClass="genre-name all-genres"/>
             </p:commandLink>
 
+<!--            <p:repeat value="#{genreController.all}" var="genre">-->
             <!--меню с навзваниями жанров (для поиска книг по жанрам) -->
-            <p:commandLink class="list-group-item" >
-                <p:outputLabel value="test" styleClass="genre-name"/>
-            </p:commandLink>
-
-
+                <p:commandLink styleClass="list-group-item" actionListener="#{bookController.showBooksByGenre(genre.id)}">
+                <p:outputLabel value="#{genre.name}" styleClass="genre-name"/>
+                </p:commandLink>
+<!--            </p:repeat>-->
         </div>
-    </b:row>
-
 
 </f:view>
 </html>

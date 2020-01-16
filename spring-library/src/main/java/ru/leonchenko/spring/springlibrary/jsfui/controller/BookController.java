@@ -9,12 +9,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import ru.leonchenko.spring.springlibrary.dao.BookDao;
+import ru.leonchenko.spring.springlibrary.dao.GenreDao;
 import ru.leonchenko.spring.springlibrary.domain.Book;
 import ru.leonchenko.spring.springlibrary.jsfui.enums.SearchType;
 import ru.leonchenko.spring.springlibrary.jsfui.model.LazyDataTable;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * @author Igor Leonchenko
@@ -35,15 +40,23 @@ public class BookController extends AbstractController<Book> {
     // также - выбранное пользователем значение (кол-во записей на странице) будет сохраняться
     private int pageCount = DEFAULT_PAGE_SIZE;
 
+    public static final int TOP_BOOKS_LIMIT = 5;// сколько показывать популярных книг
 
     private SearchType searchType;
 
     @Autowired
     private BookDao bookDao;
 
+    private GenreDao genreDao;
+
     private LazyDataTable<Book> lazyModel;
 
     private Page<Book> bookPages;
+    private List<Book> topBooks;
+
+    private String searchText;
+
+    private long selectedGenreId;
 
     @PostConstruct
     public void init(){
@@ -70,5 +83,45 @@ public class BookController extends AbstractController<Book> {
             }
         }
         return bookPages;
+    }
+
+    public List<Book> getTopBooks() {
+        topBooks = bookDao.findTopBooks(TOP_BOOKS_LIMIT);
+        return topBooks;
+    }
+
+    // поиск по определенному жанру
+    public void showBooksByGenre(long selectedGenreId) {
+        searchType = SearchType.SEARCH_GENRE;
+        this.selectedGenreId = selectedGenreId;
+    }
+
+    public void showAll(){
+        searchType = SearchType.ALL;
+    }
+
+    public String getSearchMessages() {
+
+        ResourceBundle bundle = ResourceBundle.getBundle("bundle.library", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+
+        String message = null;
+
+        if(searchType==null){
+            return null;
+        }
+        switch (searchType) {
+            case SEARCH_GENRE:
+                message = bundle.getString("genre")+ ": '"+genreDao.get(selectedGenreId)+"'";
+                break;
+            case SEARCH_TEXT:
+
+                if (searchText==null || searchText.trim().length()==0){
+                    return null;
+                }
+
+                message = bundle.getString("search")+ ": '"+searchText+"'";
+                break;
+        }
+        return message;
     }
 }
