@@ -15,12 +15,14 @@
                 <p:outputLabel value="#{msg.all_genres}" styleClass="genre-name all-genres"/>
             </p:commandLink>
 
-<!--            <p:repeat value="#{genreController.all}" var="genre">-->
+
             <!--меню с навзваниями жанров (для поиска книг по жанрам) -->
-                <p:commandLink styleClass="list-group-item" actionListener="#{bookController.showBooksByGenre(genre.id)}">
-                <p:outputLabel value="#{genre.name}" styleClass="genre-name"/>
+            <p:repeat value="#{genreController.all}" var="genre">
+                <p:commandLink class="list-group-item" actionListener="#{bookController.showBooksByGenre(genre.id)}"
+                               update="@([id$=booksList])">
+                    <p:outputLabel value="#{genre.name}" styleClass="genre-name"/>
                 </p:commandLink>
-<!--            </p:repeat>-->
+            </p:repeat>
         </div>
 
 </f:view>

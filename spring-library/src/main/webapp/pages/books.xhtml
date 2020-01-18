@@ -6,11 +6,11 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:o="http://omnifaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 
 
 <h:body>
-
 
     <ui:composition template="/templates/books/books-template.xhtml">
 
@@ -26,6 +26,14 @@
                 rowsPerPageTemplate="10,15,20,30"
                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                 lazy="true">
+
+                    <f:facet name="header">
+                        <p:outputPanel styleClass="table-header">
+                            <p:outputLabel value="#{msg.founded}: #{bookController.bookPages.totalElements}" />
+                            <p:outputLabel value="&#160;(#{bookController.getSearchMessages()})"
+                                           rendered="#{bookController.getSearchMessages() != null}"/>
+                        </p:outputPanel>
+                    </f:facet>
 
                     <p:outputPanel styleClass="card">
 

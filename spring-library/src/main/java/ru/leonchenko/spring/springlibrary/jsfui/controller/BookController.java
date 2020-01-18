@@ -75,8 +75,10 @@ public class BookController extends AbstractController<Book> {
         } else {
             switch (searchType) {
                 case SEARCH_GENRE:
+                    bookPages = bookDao.findByGenre(pageNumber, pageSize, sortField, sortDirection, selectedGenreId);
                     break;
                 case SEARCH_TEXT:
+                    bookPages = bookDao.search(pageNumber, pageSize, sortField, sortDirection, searchText);
                     break;
                 case ALL:
                     bookPages = bookDao.getAll(pageNumber, pageSize, sortField, sortDirection);
@@ -111,7 +113,8 @@ public class BookController extends AbstractController<Book> {
         }
         switch (searchType) {
             case SEARCH_GENRE:
-                message = bundle.getString("genre")+ ": '"+genreDao.get(selectedGenreId)+"'";
+                message = bundle.getString("genre")+ ": "+genreDao.get(selectedGenreId)+"'";
+//                message = bundle.getString("genre")+ ": ";
                 break;
             case SEARCH_TEXT:
 
@@ -119,9 +122,13 @@ public class BookController extends AbstractController<Book> {
                     return null;
                 }
 
-                message = bundle.getString("search")+ ": '"+searchText+"'";
+                message = bundle.getString("search")+ ": "+searchText+"'";
                 break;
         }
         return message;
+    }
+
+    public void searchAction(){
+        searchType = SearchType.SEARCH_TEXT;
     }
 }

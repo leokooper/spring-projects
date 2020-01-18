@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.leonchenko.spring.springlibrary.dao.GenreDao;
 import ru.leonchenko.spring.springlibrary.domain.Genre;
 import ru.leonchenko.spring.springlibrary.spring.repository.GenreRepository;
@@ -17,6 +19,8 @@ import java.util.Optional;
  * @version 1.0
  */
 
+@Service
+@Transactional
 public class GenreService implements GenreDao {
 
 
@@ -27,6 +31,7 @@ public class GenreService implements GenreDao {
     public List<Genre> getAll() {
         return genreRepository.findAll();
     }
+
 
     @Override
     public List<Genre> search(String... searchString) {
